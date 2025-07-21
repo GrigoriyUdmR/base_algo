@@ -3,12 +3,12 @@
 #include <time.h> 
 
 #define I_ARR  10
-#define ALGO_TYPE BIN_SEARCH
+// #define ALGO_TYPE BIN_SEARCH
+#define BIN_SEARCH  0
+#define SELEC_SORT  1
+#define LEETCODE_BS 2
 
-enum {
-    BIN_SEARCH,
-    SELEC_SORT
-} algo_t;
+#define ALGO_TYPE LEETCODE_BS
 
 typedef unsigned int uint;
 int gRandArr[I_ARR] = {0};
@@ -57,6 +57,22 @@ int bin_search(uint number, int *arr, uint size){
     else
         return -1; 
 }
+int my_sqrt(int x){  // uncorrect ver
+    int low = 0, high = x/2;
+    int mid = (high + low) / 2;
+
+    if (x < 2) return x;
+    else {
+        while(high - low > 1){
+            if (mid * mid > x) high = mid;
+            else if (mid * mid < x) low = mid;
+            else break;
+            mid = (high + low) / 2;
+        }
+        return mid;
+    }
+    return -1;
+}
 
 int main (){
     #if ALGO_TYPE == BIN_SEARCH
@@ -65,13 +81,16 @@ int main (){
     printf ("\n%d\n",number);
     printf ("\n%d\n",bin_search(number, gSortArr, I_ARR));
     // preStart(gExamArr, I_ARR);
+    #elif ALGO_TYPE == SELEC_SORT
+    //  
+    //
+    //
+    #elif ALGO_TYPE == LEETCODE_BS
+    my_sqrt(9);
+    my_sqrt(2);
+    my_sqrt(4);
     #endif
 
-    #if ALGO_TYPE == SELEC_SORT
-    //  why is it 
-    //  not 
-    //  color selected
-    #endif
     return 0;
 }
 
